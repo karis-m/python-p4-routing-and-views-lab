@@ -12,9 +12,26 @@ if __name__ == '__main__':
 
 @app.route('/print/<string:parameter>')
 def print_parameter(parameter):
-    return f'<h1>The captured parameter is: {parameter}</h1>'
+    print('hello')
+    return f'hello'
 
 @app.route('/count/<int:parameter>')
 def count(parameter):
-    numbers = list(range(parameter))
-    return f'<h1>{numbers}</h1>'
+    return '\n'.join(map(str, range(parameter))) + '\n'
+
+@app.route('/math/<int:num1>/<string:operation>/<int:num2>')
+def math(num1, operation, num2):
+    if operation == '+':
+        result = num1 + num2
+    elif operation == '-':
+        result = num1 - num2
+    elif operation == '*':
+        result = num1 * num2
+    elif operation == '/':
+        result = num1 / num2
+    elif operation == '%':
+        result = num1 % num2
+    else:
+        print('Invalid Operation')
+    
+    return str(result)
